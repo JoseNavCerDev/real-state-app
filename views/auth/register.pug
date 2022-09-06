@@ -1,0 +1,35 @@
+extends ../layout/index
+
+block content
+    div.py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Real 
+            span.font-normal State
+        h1.text-center.text-2xl.font-extrabold= page
+
+        if errors 
+            div(class="max-w-md mx-auto my-10")
+                each error in errors
+                    p.bg-red-500.text-white.uppercase.text-xs.text-center.p-2.mb-1.rounded-md.font-bold=error.msg   
+
+        div.mt-8.mx-auto.max-w-md
+            div.bg-white.py-8.px-5.shadow.rounded-lg
+                form.space-y-5(method="POST" action="/api/user/register" noValidate="true")
+                    div
+                        label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" 
+                        for="name") Name 
+                        input#name.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your name", type="text", name="name")
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-4.font-bold(for="email") Email 
+                        input#email.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your email", type="email", name="email")
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-4.font-bold(for="password") Password 
+                        input#password.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your password", type="password", name="password")
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-4.font-bold(for="password_confirmation") Confirm Password
+                        input#password_confirmation.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your password again", type="password", name="password_confirmation")
+                    
+                    div(class="flex items-center justify-between")
+                        a(class="text-gray-500 text-xs" href="/api/user/login") Already have an account ? | Log in
+                        
+                    
+                    input(class="w-full bg-indigo-600 hover:bg-indigo-700 rounded-md text-white font-bold py-3 cursor-pointer uppercase" type="submit" value="Create Account")

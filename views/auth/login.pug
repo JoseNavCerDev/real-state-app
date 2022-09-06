@@ -1,0 +1,23 @@
+extends ../layout/index
+
+block content
+    div.py-10
+        h1.text-4xl.my-10.font-extrabold.text-center Real 
+            span.font-normal State
+        h1.text-center.text-2xl.font-extrabold= page
+
+        div.mt-8.mx-auto.max-w-md
+            div.bg-white.py-8.px-5.shadow.rounded-lg
+                form.space-y-5
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-4.font-bold(for="email") Email 
+                        input#email.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your email", type="email", name="email")
+                    div
+                        label.block.text-sm.uppercase.text-gray-500.mb-4.font-bold(for="password") Password 
+                        input#password.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Type your password", type="password", name="password")
+                    
+                    div(class="flex items-center justify-between")
+                        a(class="text-gray-500 text-xs" href="/api/user/forget-password") Forgot your password ?
+                        a(class="text-gray-500 text-xs" href="/api/user/register") Create account
+
+                    input(class="w-full bg-indigo-600 hover:bg-indigo-700 rounded-md text-white font-bold py-3 cursor-pointer uppercase" type="submit" value="Log in")
