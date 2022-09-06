@@ -9,7 +9,7 @@ const ddbb = new sequelize(
     process.env.PASSWORD_DATABASE,
     {
         host: process.env.HOST,
-        port: process.env.PORT,
+        port: process.env.PORT_DATABASE,
         dialect: process.env.DATABASE_DIALECT,
         define:{
             timestamps: true
