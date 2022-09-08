@@ -2,7 +2,8 @@
 
 const formForgetPasswordController = (req,res) => {
     res.render('auth/forget-password', {
-        page : 'Password Change'
+        page : 'Password Change',
+        csrfToken: req.csrfToken() 
     });
 }
 

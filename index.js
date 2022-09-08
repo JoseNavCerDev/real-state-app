@@ -1,12 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import csrf from 'csurf';
+import cookieParser from 'cookie-parser';
 
 import routes from './routes/routes.js';
 import ddbb from './config/ddbb.js';
 
+//App Creation
 const app = express();
+
+//Method to can use json format
 app.use(express.json());
 app.use( express.urlencoded({ extended : true }) );
+
+//Cookie parser availability
+app.use( cookieParser() );
+
+//CSRF availability (Global in all app)
+app.use( csrf({ cookie : true }) );
 
 //Database connection
 try {

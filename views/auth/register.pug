@@ -14,6 +14,7 @@ block content
         div.mt-8.mx-auto.max-w-md
             div.bg-white.py-8.px-5.shadow.rounded-lg
                 form.space-y-5(method="POST" action="/api/user/register" noValidate="true")
+                    input(type="hidden" name="_csrf" value=csrfToken)
                     div
                         label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" 
                         for="name") Name 

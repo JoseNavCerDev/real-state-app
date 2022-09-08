@@ -2,7 +2,8 @@
 
 const FormRegisterController = (req,res) => {
     res.render('auth/register', {
-        page: 'Create account'
+        page: 'Create account',
+        csrfToken: req.csrfToken()
     });
 }
 
