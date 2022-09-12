@@ -7,6 +7,8 @@ import resetPassword from '../controllers/form/form-reset-password.js';
 
 import userCreateNew from '../controllers/user/user-create-new.js';
 import userValidateEmail from '../controllers/user/user-validate-email.js';
+import userValidateChangePassword from '../controllers/user/user-validate-change-password.js';
+import userChangePassword from '../controllers/user/user-change-password.js';
 
 const userRouter = express.Router();
 
@@ -18,6 +20,10 @@ userRouter.get('/register', formRegisterController);
 
 //Validate email after register endpoint
 userRouter.get('/validate-email/:token', userValidateEmail);
+
+//Validate change password with token
+userRouter.get('/change-password/:token', userValidateChangePassword);
+userRouter.post('/change-password', userChangePassword);
 
 //Forget password endpoint
 userRouter.get('/forget-password', formForgetPasswordController);

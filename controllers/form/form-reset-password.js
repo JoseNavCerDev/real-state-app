@@ -1,37 +1,62 @@
+import { check, validationResult } from "express-validator";
+import User from "../../models/user-model.js";
 
+import emailPasswordChange from '../../helpers/email-password-change.js';
+import tokenGenerator from '../../helpers/token-generator.js';
 
 const resetPassword = async (req,res) => {
+
+    const { email } = req.body;
     
     //Validation fields by express-validator
     await check('email').isEmail().withMessage('It is not an email').run(req);
     
-    //Erros storage in validation
+    //Error storage in validation
     let result = validationResult(req);
 
     //Verify to array errors is void
     if(!result.isEmpty()){
         return res.render('auth/forget-password', {
-            page: 'Create account',
+            page: 'Password change',
             errors: result.array(),
             csrfToken: req.csrfToken()            
         })
+    }  
+
+    //Check if the new email exists
+    const user = await User.findOne( { where : { email } } );
+
+    //Invalid email
+    if(!user){
+        return res.render('auth/generic-message', {
+            page: "There's email is not registered",
+            msg: "Something was wrong...maybe could be invalid email",
+            error: true
+        });
     }
 
-    //Check if the new email is already registered
-    const duplicateUser = await User.findOne( { where : { email : req.body.email } } );
+    const { id, name } = user.dataValues;
 
-    //If email user is duplicated
-    if(duplicateUser){
-        return res.render('auth/register', {
-            page: 'Create account',
-            errors: [ { msg : 'User is already register' } ],
-            csrfToken: req.csrfToken(),
-            user: {
-                name: req.body.name,
-                email: req.body.email
-            }
-        })
-    }   
+    //Token generator with user ID
+    const token = tokenGenerator( id );
+
+    //Confirmation email
+    emailPasswordChange( {
+        email,
+        name,
+        token
+    } );
+
+    user.token = token;
+
+    await user.save();
+
+    //Show change password message 
+    res.render('messages/generic-message', {
+        page: `Email send to ${email} account`,
+        msg: "We've send you an email with instructions... check it out to continue",
+        csrfToken: req.csrfToken() 
+    })
 }
 
 export default resetPassword;
