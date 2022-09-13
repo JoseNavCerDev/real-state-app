@@ -29,6 +29,7 @@ const userValidateEmail = async(req,res) => {
         return res.render('auth/change-password', {
             page: `Change password account`,
             msg: `Please ${user.name} change your password`,
+            csrfToken: req.csrfToken(),
             error: false
         });
     } catch (error) {

@@ -1,8 +1,8 @@
 import { check, validationResult } from 'express-validator';
 
 import tokenGenerator from '../../helpers/token-generator.js';
-import idGenerator from '../../helpers/id-generator.js';
 import emailRegister from '../../helpers/email-register.js';
+import hashPassword from '../../helpers/hash-password.js';
 
 import User from '../../models/user-model.js';
 
@@ -54,9 +54,12 @@ const userCreateNew = async (req,res) => {
     const user = await User.create({
         name,
         email,
-        password,
-        token: idGenerator()
-    }); 
+        password : await hashPassword(password)
+    });
+    
+    //Create token and register in DDBB
+    user.token = tokenGenerator(user.id); 
+    await user.save();
 
     //Confirmation email
     emailRegister({

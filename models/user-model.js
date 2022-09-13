@@ -2,6 +2,8 @@ import { DataTypes } from 'sequelize';
 import db from '../config/ddbb.js';
 import bcrypt from 'bcrypt';
 
+import hashPassword from '../helpers/hash-password.js';
+
 const User = db.define(
     'users',
     {
@@ -19,14 +21,11 @@ const User = db.define(
         },
         token: DataTypes.STRING,
         confirm: DataTypes.BOOLEAN
-    },{
+    },/* {
         hooks:{
-            beforeCreate: async function(user){
-                const salt = await bcrypt.genSalt(10);
-                user.password = await bcrypt.hash(user.password, salt)
-            }
+            beforeCreate: hashPassword(User.password)
         }
-    }
+    } */
 );
 
 export default User;
