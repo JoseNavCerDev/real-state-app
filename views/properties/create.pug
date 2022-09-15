@@ -58,7 +58,18 @@ block content
                                     - let n_wc = 1;
                                         while n_wc < 10
                                             option(value=n_wc ) #{n_wc++} 
-                        #map.h-96
+
+                        div(class="border-gray-200 border-t py-5 space-y-6")
+                            h3(class="text-lg leading-6 font-medium text-gray-800") Location
+                            p(class="text-gray-600") Locate the property on the map
+                            #map.h-96
+
+                            div
+                                p.street
+                            
+                            input(type="hidden" name="street" id="street")
+                            input(type="hidden" name="lat" id="lat")
+                            input(type="hidden" name="lng" id="lng")
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

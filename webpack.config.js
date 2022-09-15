@@ -5,7 +5,7 @@ export default {
     entry:{
         map:'./src/js/map.js'
     },output:{
-        filename:'[name]',
+        filename:'[name].js',
         path: path.resolve('public/js')
     }
 }
