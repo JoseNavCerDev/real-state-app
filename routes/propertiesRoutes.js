@@ -1,10 +1,13 @@
 import express from 'express';
 
-import myProperties from '../controllers/properties/properties-controller.js';
+import createNewProperty from '../controllers/properties/create-new-property.js';
+import getProperties from '../controllers/properties/get-properties.js';
 
 const propertiesRouter = express.Router();
 
+propertiesRouter.get('/my-properties', getProperties);
+
 //Get Test endpoint
-propertiesRouter.get('/my-properties', myProperties);
+propertiesRouter.get('/create-property', createNewProperty);
 
 export default propertiesRouter;

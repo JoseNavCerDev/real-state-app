@@ -1,5 +1,5 @@
 
-const myProperties = (req,res) => {
+const getProperties = (req,res) => {
     return res.render('properties/view-admin', {
         page : 'Log In',
         msg : "Succesful authentication",
@@ -8,4 +8,4 @@ const myProperties = (req,res) => {
     }); 
 }
 
-export default myProperties;
+export default getProperties;
