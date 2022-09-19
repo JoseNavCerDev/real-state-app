@@ -9,67 +9,83 @@ block content
         h1.text-4xl.my-10.font-extrabold.text-center Real 
             span.font-normal State
         h2.text-center.text-2xl.font-extrabold= page
-        input(type="hidden" name="_csrf" value=csrfToken)
+
+        if errors 
+            div(class="max-w-md mx-auto my-10")
+                each error in errors
+                    p.bg-red-500.text-white.uppercase.text-xs.text-center.p-2.mb-1.rounded-md.font-bold=error.msg
 
         div(class="bg-white shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
-            form(class="space-y-8")
+            form(class="space-y-8" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)
                 div(class="space-y-8")
                     h3(class="text-lg leading-6 font-medium text-gray-800") General information
                     p(class="text-gray-600") Add information about the property
 
                     div
-                        label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="title") Ad title
-                        input#title.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400.mb-4(placeholder="Property title, ex. Beach House...", type="text", name="title")
+                        label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="title") Property's title
+                        input#title.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Property title, ex. Beach House..." type="text" name="title" value=data.title ? data.title : '')
                     
-                        div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
+                    div
+                        label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="description") Property's description
+                        textarea#description.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(placeholder="Property description, ex. Excelent location..." type="text" name="description")=data.description ? data.description : ''
+                    
+                    
+                    div(class="md:flex md:gap-4 space-y-5 md:space-y-0")
 
-                            div(class="md:w-1/2")
-                                label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="title") Category
-                                select#category.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="category")
-                                    option(value="") -- Select a category --
+                        div(class="md:w-1/2")
+                            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="title") Category
+                            select#category.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="category")
+                                option(value="") -- Select a category --
+                                each category in categories
+                                    option(value=category.id selected=data.category ? data.category === category.id ? true : false : null )= category.categories_name
 
-                            div(class="md:w-1/2")
-                                label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="title") Price
-                                select#price.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="price")
-                                    option(value="") -- Select a price --
+                        div(class="md:w-1/2")
+                            label(class="block text-sm uppercase text-gray-500 mb-2 font-bold" for="price") Price
+                            select#price.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="price")
+                                option(value="") -- Select a price --
+                                each price in prices
+                                    option(value=price.id selected=data.price ? data.price == price.id ? true : false : null )= price.price_name
                         
-                        div(class="md:flex md:gap-5 space-y-4 md:space-y-0 md:py-4")
+                    div(class="md:flex md:gap-5 space-y-4 md:space-y-0 md:py-4")
 
-                            div(class="md:w-1/3")
-                                label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="rooms") Rooms
-                                select#rooms.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="rooms")
-                                    option(value="") -- Select a category --
-                                    - let n_rooms = 1;
-                                        while n_rooms < 10
-                                            option(value=n_rooms ) #{n_rooms++} 
+                        div(class="md:w-1/3")
+                            label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="rooms") Rooms
+                            select#rooms.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="rooms")
+                                option(value="") -- Select rooms number --
+                                - let n_rooms = 1;
+                                    while n_rooms < 10
+                                        option(value=n_rooms ) #{n_rooms++} 
 
-                            div(class="md:w-1/3")
-                                label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="parking") Parking
-                                select#parking.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="parking")
-                                    option(value="") -- Select a price --
-                                    - let n_parking = 1;
-                                        while n_parking < 5
-                                            option(value=n_parking ) #{n_parking++} 
+                        div(class="md:w-1/3")
+                            label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="parking") Parking
+                            select#parking.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="parking")
+                                option(value="") -- Select parking number --
+                                - let n_parking = 1;
+                                    while n_parking < 5
+                                        option(value=n_parking ) #{n_parking++} 
 
-                            div(class="md:w-1/3")
-                                label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="wc") WC
-                                select#wc.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="wc")
-                                    option(value="") -- Select a price --
-                                    - let n_wc = 1;
-                                        while n_wc < 10
-                                            option(value=n_wc ) #{n_wc++} 
+                        div(class="md:w-1/3")
+                            label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="wc") WC
+                            select#wc.w-full.px-3.py-2.border.border-gray-300.border-2.rounded-lg.placeholder-gray-400(name="wc")
+                                option(value="") -- Select wc number --
+                                - let n_wc = 1;
+                                    while n_wc < 10
+                                        option(value=n_wc ) #{n_wc++} 
 
-                        div(class="border-gray-200 border-t py-5 space-y-6")
-                            h3(class="text-lg leading-6 font-medium text-gray-800") Location
-                            p(class="text-gray-600") Locate the property on the map
-                            #map.h-96
+                    div(class="border-gray-200 border-t py-5 space-y-6")
+                        h3(class="text-lg leading-6 font-medium text-gray-800") Location
+                        p(class="text-gray-600") Locate the property on the map
+                        #map.h-96
 
-                            div
-                                p.street
+                        div
+                            p.street
                             
-                            input(type="hidden" name="street" id="street")
-                            input(type="hidden" name="lat" id="lat")
-                            input(type="hidden" name="lng" id="lng")
+                        input(type="hidden" name="street" id="street")
+                        input(type="hidden" name="lat" id="lat")
+                        input(type="hidden" name="lng" id="lng")
+            
+                    input(class="bg-indigo-600 hover:bg-indigo-700 rounded w-full text-white font-bold uppercase cursor-pointer py-2" type="submit" value="Ad image")
 
 block scripts
     script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")

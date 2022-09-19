@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "css": "postcss public/css/tailwind.css -o public/css/app.css --watch",
     "js": "webpack --watch",
-    "dev": "concurrently \"npm run css\" \"npm run js\" \"nodemon\" "
+    "dev": "concurrently \"npm run css\" \"npm run js\" \"nodemon\" ",
+    "db:import": "node ./seed/seeder.js -i",
+    "db:erase": "node ./seed/seeder.js -e"
   },
   "keywords": [],
   "author": "",
