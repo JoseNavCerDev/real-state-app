@@ -14,7 +14,6 @@ const createNewProperty = async (req,res) => {
     return res.render('properties/create', {
         page : 'Post new property',
         csrfToken: req.csrfToken(),
-        navbar: true,
         categories,
         prices,
         data: req.body

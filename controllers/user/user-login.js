@@ -68,7 +68,7 @@ const userLoginController = async (req,res) => {
         error: false
     }); */  
 
-    const token = tokenGenerator(userLogin.id);
+    const token = tokenGenerator({id: userLogin.id, name: userLogin.name});
 
     return res.cookie("_token", token, {
         httpOnly: true,

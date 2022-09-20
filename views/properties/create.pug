@@ -1,4 +1,4 @@
-extends ../layout/index
+extends ../layout/admin
 
 block styles
     link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
@@ -55,7 +55,8 @@ block content
                                 option(value="") -- Select rooms number --
                                 - let n_rooms = 1;
                                     while n_rooms < 10
-                                        option(value=n_rooms ) #{n_rooms++} 
+                                        option(value=n_rooms selected=data.rooms ? data.rooms == n_rooms ? true : false : null ) #{n_rooms++} 
+                                        
 
                         div(class="md:w-1/3")
                             label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="parking") Parking
@@ -63,7 +64,7 @@ block content
                                 option(value="") -- Select parking number --
                                 - let n_parking = 1;
                                     while n_parking < 5
-                                        option(value=n_parking ) #{n_parking++} 
+                                        option(value=n_parking selected=data.parking ? data.parking == n_parking ? true : false : null) #{n_parking++} 
 
                         div(class="md:w-1/3")
                             label(class="block text-sm uppercase text-gray-500 mb-4 font-bold" for="wc") WC
@@ -71,7 +72,7 @@ block content
                                 option(value="") -- Select wc number --
                                 - let n_wc = 1;
                                     while n_wc < 10
-                                        option(value=n_wc ) #{n_wc++} 
+                                        option(value=n_wc selected=data.wc ? data.wc == n_wc ? true : false : null) #{n_wc++} 
 
                     div(class="border-gray-200 border-t py-5 space-y-6")
                         h3(class="text-lg leading-6 font-medium text-gray-800") Location
@@ -79,11 +80,11 @@ block content
                         #map.h-96
 
                         div
-                            p.street
+                            p.street= data.street ? data.street : ''
                             
-                        input(type="hidden" name="street" id="street")
-                        input(type="hidden" name="lat" id="lat")
-                        input(type="hidden" name="lng" id="lng")
+                        input(type="hidden" name="street" id="street" value=data.street ? data.street : '')
+                        input(type="hidden" name="lat" id="lat" value=data.lat ? data.lat : '')
+                        input(type="hidden" name="lng" id="lng" value=data.lng ? data.lng : '')
             
                     input(class="bg-indigo-600 hover:bg-indigo-700 rounded w-full text-white font-bold uppercase cursor-pointer py-2" type="submit" value="Ad image")
 

@@ -21,11 +21,19 @@ const User = db.define(
         },
         token: DataTypes.STRING,
         confirm: DataTypes.BOOLEAN
-    },/* {
-        hooks:{
+    },{
+        /* hooks:{
             beforeCreate: hashPassword(User.password)
+        } */
+        scopes:{
+            userAvoidParameters:{
+                attributes:{
+                    exclude: ['password', 'token', 'confirm', 'createdAt', 'updatedAt']
+                }
+            }
+
         }
-    } */
+    } 
 );
 
 export default User;

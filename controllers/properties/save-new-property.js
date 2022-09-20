@@ -1,6 +1,6 @@
 import { check, validationResult } from 'express-validator';
 
-import Property from "../../models/property-model.js";
+import Property from '../../models/property-model.js';
 import Category from '../../models/category-model.js';
 import Price from '../../models/price-model.js';
 
@@ -31,7 +31,6 @@ const saveNewProperty = async (req,res) => {
         return res.render('properties/create', {
             page : 'Post new property',
             csrfToken: req.csrfToken(),
-            navbar: true,
             categories,
             prices,
             errors: result.array(),
@@ -39,15 +38,33 @@ const saveNewProperty = async (req,res) => {
         });
     }
 
-    const { title, description, price, category, rooms, parking, wc, lat, lng, image } = req.body;
+    //There's not errors ?        
+    const { title, description, price : idPrice, category, rooms, street,parking, wc, lat, lng } = req.body;
+    
+    //Creating new property    
+    try {
+        const newProperty = await Property.create({
+            title, 
+            description,   
+            rooms, 
+            parking,
+            street,
+            wc, 
+            lat, 
+            lng, 
+            idPrice,
+            idCategory: category,
+            idUser: req.user.dataValues.id,
+            image: req.user.dataValues.name
+        });
 
-    //console.log(req.body);
-    //console.log(price);
-
-
-
-     
-
+        //Redirect after save in ddbb with ID user
+        const { id } = newProperty;
+        res.redirect(`/api/properties/ad-images/${id}`);
+        
+    } catch (error) {
+        console.log(error);
+    } 
 
 }
 

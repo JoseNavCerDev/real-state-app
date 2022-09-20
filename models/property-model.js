@@ -44,6 +44,18 @@ const Property = db.define('properties', {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: false
+    },
+    idPrice:{
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    idCategory:{
+        type: DataTypes.UUID,
+        allowNull: false
+    },
+    idUser:{
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 });
 
