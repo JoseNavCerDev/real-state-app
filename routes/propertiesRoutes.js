@@ -6,6 +6,7 @@ import saveNewProperty from '../controllers/properties/save-new-property.js';
 import adImagesAfterSaveProperty from '../controllers/properties/ad-images-property.js';
 
 import protectRoutes from '../middlewares/protect-routes.js';
+import validateProperty from '../middlewares/validate-property.js';
 
 const propertiesRouter = express.Router();
 
@@ -19,6 +20,9 @@ propertiesRouter.get('/create-property', protectRoutes, createNewProperty);
 propertiesRouter.post('/create-property', protectRoutes, saveNewProperty);
 
 //Ad properties
-propertiesRouter.get('/ad-images/:id', protectRoutes, adImagesAfterSaveProperty);
+propertiesRouter.get('/ad-images/:id', protectRoutes, validateProperty, adImagesAfterSaveProperty);
+
+//Save properties
+propertiesRouter.post('/ad-images/:id', protectRoutes, validateProperty, adImagesAfterSaveProperty);
 
 export default propertiesRouter;

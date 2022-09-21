@@ -26,7 +26,7 @@ eval("(function webpackUniversalModuleDefinition(root, factory) {\n\tif(true)\n\
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\nconsole.log('Cantilever,....');\n\n//# sourceURL=webpack://bienes-raices/./src/js/adImage.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var dropzone__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! dropzone */ \"./node_modules/dropzone/dist/dropzone.js\");\n\r\n\r\nconst token = document.querySelector('meta[name=\"csrf-token\"]').getAttribute('content');\r\n\r\ndropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone.autoDiscover = false;\r\n\r\nlet myDropzone = new dropzone__WEBPACK_IMPORTED_MODULE_0__.Dropzone(\"#my-form\", {\r\n  url: \"/file/post\", \r\n  dictDefaultMessage: 'Upload your images',\r\n  acceptedFiles: '.png,.jpg,.jpeg',\r\n  maxFilesize: 2,\r\n  maxFiles: 1,\r\n  parallelUploads: 1,\r\n  autoProcessQueue: false,\r\n  addRemoveLinks: true,\r\n  headers:{\r\n    'CSRF-Token': token\r\n  } \r\n});\r\n\r\nmyDropzone.on(\"addedfile\", file => {\r\n  console.log(`File added: ${file.name}`);\r\n});\n\n//# sourceURL=webpack://bienes-raices/./src/js/adImage.js?");
 
 /***/ })
 

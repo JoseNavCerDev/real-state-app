@@ -9,7 +9,7 @@ import ddbb from './config/ddbb.js';
 //App Creation
 const app = express();
 
-//Method to can use json format
+//Method to can use json format and forms
 app.use(express.json());
 app.use( express.urlencoded({ extended : true }) );
 
