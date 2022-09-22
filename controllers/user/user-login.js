@@ -10,6 +10,8 @@ const userLoginController = async (req,res) => {
     //Destructure
     const { email, password } = req.body;
 
+    console.log(email, password);
+
     //express-validator fields
     await check('email').isEmail().withMessage('It is not an email').run(req);
     await check('password').isLength( { min : 6 } ).

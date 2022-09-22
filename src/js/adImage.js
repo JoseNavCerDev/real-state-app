@@ -2,10 +2,10 @@ import {Dropzone} from 'dropzone';
 
 const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-Dropzone.autoDiscover = false;
+//Dropzone.autoDiscover = false;
 
-let myDropzone = new Dropzone("#my-form", {
-  url: "/file/post", 
+Dropzone.options.imagesForm =  {
+  //url: "/file/post", 
   dictDefaultMessage: 'Upload your images',
   acceptedFiles: '.png,.jpg,.jpeg',
   maxFilesize: 2,
@@ -15,9 +15,20 @@ let myDropzone = new Dropzone("#my-form", {
   addRemoveLinks: true,
   headers:{
     'CSRF-Token': token
-  } 
-});
+  },
+  paramName: 'image',
+  init: function(){
+    const dropzone = this;
+    const publishButton = document.querySelector('#publishButton');
 
-myDropzone.on("addedfile", file => {
-  console.log(`File added: ${file.name}`);
-});
+    publishButton.addEventListener('click', function(){
+      dropzone.processQueue();
+    })
+
+    dropzone.on('queuecomplete', function() {
+      if(dropzone.getActiveFiles().length === 0){
+        window.location.href = '/api/properties/my-properties'
+      }
+    })
+  }
+};

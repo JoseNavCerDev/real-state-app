@@ -54,7 +54,7 @@ const Property = db.define('properties', {
         allowNull: false
     },
     idUser:{
-        type: DataTypes.INTEGER,
+        type: DataTypes.UUID,
         allowNull: false
     }
 });

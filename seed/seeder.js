@@ -4,8 +4,9 @@ import db from '../config/ddbb.js';
 import categoriesSeed from "./categories-seed.js";
 import pricesSeed from './prices-seed.js';
 import usersSeed from './users-seed.js';
+//import propertiesSeed from '../seed/properties-seed.js';
 
-import { Category, Price, User } from '../models/relations-model.js';
+import { Category, Price, User, /* Property */ } from '../models/relations-model.js';
 
 //Function to import DATA
 const dataImport = async () => {
@@ -20,7 +21,8 @@ const dataImport = async () => {
         await Promise.all([
             Category.bulkCreate(categoriesSeed),
             Price.bulkCreate(pricesSeed),
-            User.bulkCreate(usersSeed)
+            User.bulkCreate(usersSeed),
+            //Property.bulkCreate(propertiesSeed)
         ]);
 
         console.log('Success data import');

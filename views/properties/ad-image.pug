@@ -12,10 +12,10 @@ block content
         h2.text-center.text-2xl.font-extrabold= page
        
         div(class="bg-white shadow py-8 px-4 rounded mx-auto max-w-4xl my-10 md:px-10")
-            form(class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" method="POST" id="my-form" action=`/api/properties/ad-images/${property}`)
+            form(class="dropzone border-dashed border-2 w-full min:h-96 h-auto rounded flex-col justify-center items-center" method="POST" id="imagesForm" action=`/api/properties/ad-images/${id}`)
                 input(type="hidden" name="_csrf" value=csrfToken)
                                         
-            input(class="bg-indigo-600 hover:bg-indigo-700 rounded w-full text-white font-bold uppercase cursor-pointer py-2 mt-4" type="submit" value="Post property")
+            button(id="publishButton" class="bg-indigo-600 hover:bg-indigo-700 rounded w-full text-white font-bold uppercase cursor-pointer py-2 mt-4" type="button") Post property
 
 block scripts
     script(src="/js/adImage.js")

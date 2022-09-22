@@ -19,7 +19,7 @@ const validateProperty = async (req, res, next) => {
             return res.redirect('/api/properties/my-properties')
         }
 
-        req.property = property.title;
+        req.property = property;
     
         next();
         
