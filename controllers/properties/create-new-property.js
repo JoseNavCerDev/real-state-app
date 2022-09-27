@@ -1,7 +1,6 @@
 import Price from '../../models/price-model.js';
 import Category from '../../models/category-model.js';
 
-
 //Form to create a new property
 const createNewProperty = async (req,res) => {
     
