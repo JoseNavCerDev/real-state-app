@@ -15,6 +15,8 @@ const saveNewProperty = async (req,res) => {
     await check('parking').notEmpty().withMessage('Parking field is required').run(req);
     await check('wc').notEmpty().withMessage('WC number is required').run(req);
 
+    console.log(req.body);
+
     //Error storage in validation
     let result = validationResult(req);
 

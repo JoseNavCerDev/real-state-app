@@ -27,7 +27,7 @@
 
         //Get streets information
         geocodeService.reverse().latlng(position, 13).run(function(error,result){
-            console.log(result);
+            //console.log(result);
 
             marker.bindPopup(result.address.LongLabel).openPopup();
 
