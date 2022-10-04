@@ -1,6 +1,4 @@
-import Property from "../../models/property-model.js";
-import Price from "../../models/price-model.js";
-import Category from "../../models/category-model.js";
+import { Property, Price, Category } from '../../models/relations-model.js';
 
 const properties = async (req,res) => {
 
@@ -9,7 +7,6 @@ const properties = async (req,res) => {
             {model: Price},
             {model: Category}
         ]
-
     });
 
     return res.json(properties);
