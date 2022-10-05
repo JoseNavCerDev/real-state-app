@@ -1,16 +1,25 @@
 header(class="bg-indigo-600 p-4") 
     div(class="container mx-auto flex justify-between items-center")
-        h1(class="text-2xl text-white font-extrabold text-center") Real
-            span(class="font-normal") State
+        a(href="/api/public/welcome")
+            h1(class="text-2xl text-white font-extrabold text-center") Real
+                span(class="font-normal") State
         
         nav(class="my-5 text-sm md:flex md:items-center md:gap-3 font-bold text-white")
             a(href="/api/user/register") Create account
             a(href="/api/user/login") Log In
 
 div(class="bg-indigo-700 py-5 hidden lg:block")
-    div(class="container mx-auto flex justify-between") 
-        a(href="/api/public/categories/11f2292a-2de8-4e39-9740-093e898d21c3" class="text-sm font-bold uppercase text-white") Storage
-        a(href="/api/public/categories/22fd2489-44fb-411b-bd76-62b074726f64" class="text-sm font-bold uppercase text-white") House
-        a(href="/api/public/categories/7e8818e8-a83f-45e0-95a4-6ed7a780497a" class="text-sm font-bold uppercase text-white") Roadhouse
-        a(href="/api/public/categories/a971bd5b-aa73-497f-b050-ef8b8d2bdb7e" class="text-sm font-bold uppercase text-white") Apartment
-        a(href="/api/public/categories/bd41f123-b428-4c18-9e80-823426b4e081" class="text-sm font-bold uppercase text-white") Land
+    div(class="container mx-auto flex justify-between")
+        nav(class="flex gap-4 items-center")
+            a(href="/api/public/categories/11f2292a-2de8-4e39-9740-093e898d21c3" class="text-sm font-bold uppercase text-white") Storage
+            a(href="/api/public/categories/22fd2489-44fb-411b-bd76-62b074726f64" class="text-sm font-bold uppercase text-white") House
+            a(href="/api/public/categories/7e8818e8-a83f-45e0-95a4-6ed7a780497a" class="text-sm font-bold uppercase text-white") Roadhouse
+            a(href="/api/public/categories/a971bd5b-aa73-497f-b050-ef8b8d2bdb7e" class="text-sm font-bold uppercase text-white") Apartment
+            a(href="/api/public/categories/bd41f123-b428-4c18-9e80-823426b4e081" class="text-sm font-bold uppercase text-white") Land
+        
+        form(class="flex gap-3 items-center" action="/api/public/search" method="POST")
+            input(type="hidden" name="_csrf" value=csrfToken)
+            label(class="text-sm uppercase font-bold text-white" for="ending") Searching
+            input(class="p-2 rounded-lg shadow text-sm" type="text" id="ending" name="ending" placeholder="Properties Search")
+
+            input(class="bg-indigo-800 rounded-lg text-sm text-white uppercase font-bold p-2 cursor-pointer hover:bg-indigo-400" type="submit" value="Search")

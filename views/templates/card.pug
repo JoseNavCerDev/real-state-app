@@ -1,14 +1,14 @@
 div(class="bg-white shadow rounded-lg")
     img(class="object-cover h-72 w-full" src=`/uploads/${property.image}`, alt=`house image of ${property.title}`)
     div(class="p-5 space-y-2")
-    h3(class="text-2xl font-bold")= property.title
-    
-    p(class="text-sm text-gray-600") Rooms: 
-        span(class="text-gray-800 font-bold")= property.rooms
+        h3(class="text-2xl font-bold")= property.title
+        
+        p(class="text-sm text-gray-600") Rooms: 
+            span(class="text-gray-800 font-bold")= property.rooms
 
-    p(class="text-sm text-gray-600") WC: 
-        span(class="text-gray-800 font-bold")= property.wc
+        p(class="text-sm text-gray-600") WC: 
+            span(class="text-gray-800 font-bold")= property.wc
 
-    p(class="text-sm text-gray-600") Price: 
-        span(class="text-gray-800 font-bold")= property.price.price_name
-    a(class="bg-indigo-600 w-full text-center block font-bold text-white p-2 uppercase rounded" href=`/api/public/property/${property.id}`) Go to the property
+        p(class="text-sm text-gray-600") Price: 
+            span(class="text-gray-800 font-bold")= property.price.price_name
+        a(class="bg-indigo-600 w-full text-center block font-bold text-white p-2 uppercase rounded" href=`/api/public/property/${property.id}`) Go to the property

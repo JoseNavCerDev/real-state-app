@@ -13,13 +13,13 @@ const publicRoutes = express.Router();
 publicRoutes.get('/welcome', welcomePage);
 
 //404 Page
-publicRoutes.get('/not-found', notFoundPage);
+publicRoutes.get('/notFound', notFoundPage);
 
 //Categories
-publicRoutes.get('/categories', categoriesPage);
+publicRoutes.get('/categories/:id', categoriesPage);
 
 //Search
-publicRoutes.get('/search', searchPage);
+publicRoutes.post('/search', searchPage);
 
 //Show property
 publicRoutes.get('/property/:id', showProperty);

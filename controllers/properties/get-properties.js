@@ -53,8 +53,8 @@ const getProperties = async (req, res) => {
       pageByQuery: Number(pageByQuery),
       offset,
       limit,
-      total
-
+      total,
+      csrfToken: req.csrfToken()
     });
   } catch (error) {
     console.error(error);

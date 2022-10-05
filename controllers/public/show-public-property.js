@@ -26,7 +26,10 @@ const showPublicProperty = async (req,res) => {
         });
 
     } catch (error) {
+
         console.log(error);
+
+        return res.redirect('/api/public/notFound');
     }
 
 }

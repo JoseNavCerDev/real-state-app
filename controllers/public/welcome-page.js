@@ -42,7 +42,8 @@ const welcomePage = async (req,res) => {
         categories,
         prices,
         houses,
-        apartments
+        apartments,
+        csrfToken: req.csrfToken()
     });
 
 }
