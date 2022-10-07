@@ -1,5 +1,5 @@
 import Property from "../../models/property-model.js";
-import { Category, Price } from "../../models/relations-model.js";
+import { Category, Message, Price } from "../../models/relations-model.js";
 
 const getProperties = async (req, res) => {
 
@@ -29,12 +29,9 @@ const getProperties = async (req, res) => {
           idUser,
         },
         include: [
-          {
-            model: Category,
-          },
-          {
-            model: Price,
-          },
+          {model: Category},
+          {model: Price},
+          {model: Message}
         ],
       }),
       Property.count({
@@ -43,7 +40,6 @@ const getProperties = async (req, res) => {
         },
       }),
     ]);
-
 
     return res.render("properties/view-admin", {
       page: "My properties",

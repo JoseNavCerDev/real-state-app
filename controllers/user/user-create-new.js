@@ -74,7 +74,9 @@ const userCreateNew = async (req,res) => {
     //Show confirmation message
     res.render('messages/register-succes', {
         page: "Sucessful register",
-        msg: "We've send you an email... check it out to continue"
+        msg: "We've send you an email... check it out to continue",
+        _redirection: '/api/public/welcome',
+        _redirectionMessage: "Start Page"
     })
 }
 

@@ -8,6 +8,7 @@ import storageImage from '../controllers/properties/storage-images-property.js';
 import editProperty from '../controllers/properties/edit-property.js';
 import saveEditProperty from '../controllers/properties/save-edit-property.js';
 import deleteProperty from '../controllers/properties/delete-property.js';
+import getMessages from '../controllers/properties/get-messages.js';
 
 import protectRoutes from '../middlewares/protect-routes.js';
 import uploadImage from '../middlewares/upload-image.js';
@@ -32,6 +33,9 @@ propertiesRouter.get('/my-properties', protectRoutes, getProperties);
 
 //Delete property
 propertiesRouter.post('/delete-property/:id', protectRoutes, deleteProperty);
+
+//Message reading
+propertiesRouter.get('/messages/:id', getMessages);
 
 
 export default propertiesRouter;

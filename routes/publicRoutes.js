@@ -6,6 +6,10 @@ import searchPage from '../controllers/public/search-page.js';
 import notFoundPage from '../controllers/public/not-found-page.js';
 import categoriesPage from '../controllers/public/categories-page.js';
 import apiController from '../controllers/public/api-controller.js';
+import sendMessage from '../controllers/public/send-message.js';
+
+//Middlewares
+import identifyUser from '../middlewares/identify-user.js';
  
 const publicRoutes = express.Router();
 
@@ -22,7 +26,8 @@ publicRoutes.get('/categories/:id', categoriesPage);
 publicRoutes.post('/search', searchPage);
 
 //Show property
-publicRoutes.get('/property/:id', showProperty);
+publicRoutes.get('/property/:id',identifyUser ,showProperty);
+publicRoutes.post('/property/:id',identifyUser ,sendMessage);
 
 //API properties
 publicRoutes.get('/properties', apiController);
