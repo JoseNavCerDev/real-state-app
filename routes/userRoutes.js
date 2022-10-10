@@ -10,12 +10,16 @@ import userValidateEmail from '../controllers/user/user-validate-email.js';
 import userValidateChangePassword from '../controllers/user/user-validate-change-password.js';
 import userChangePassword from '../controllers/user/user-change-password.js';
 import userLoginController from '../controllers/user/user-login.js';
+import logOut from '../controllers/user/user-log-out.js';
 
 const userRouter = express.Router();
 
 //Login endpoint & Login
 userRouter.get('/login', formLoginController);
 userRouter.post('/login', userLoginController);
+
+//Log out
+userRouter.post('/log-out', logOut);
 
 //Register endpoint 
 //New User endpoint

@@ -1,5 +1,8 @@
 import { Property, Message, User } from "../../models/relations-model.js";
 
+//Helper for DATE FORMATER
+import dateFormat from "../../helpers/date-format.js";
+
 const getMessages = async (req,res) => {
 
     const { id } = req.params;
@@ -11,8 +14,8 @@ const getMessages = async (req,res) => {
         properties = await Property.findByPk(id, {
             include: [
                 {model: Message,
-                    include: [
-                        {model: User}
+                    include: [ //SCOPE used for not use fields in JOIN
+                        {model: User.scope('userAvoidParameters')}
                     ]
                 }
             ]
@@ -24,7 +27,8 @@ const getMessages = async (req,res) => {
 
     return res.render('properties/message-properties', {
         page: 'Messages',
-        message: properties.messages
+        message: properties.messages,
+        dateFormat
     });
     
 }

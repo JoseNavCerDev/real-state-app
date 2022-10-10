@@ -23,9 +23,13 @@ const showPublicProperty = async (req,res) => {
             ]
         });
 
-        //
+        
         req.property = property;
-        req.saler = isSaler(req.user?.id, property.idUser)
+        req.saler = isSaler(req.user?.id, property.idUser);
+
+        if(!property.isPublicated){
+            return res.redirect('/api/public/notFound');
+        }
 
 
         return res.render('properties/show-public-properties', {

@@ -9,10 +9,12 @@ import editProperty from '../controllers/properties/edit-property.js';
 import saveEditProperty from '../controllers/properties/save-edit-property.js';
 import deleteProperty from '../controllers/properties/delete-property.js';
 import getMessages from '../controllers/properties/get-messages.js';
+import changeStateIsPublicated from '../controllers/properties/change-state-isPublicated.js';
 
 import protectRoutes from '../middlewares/protect-routes.js';
 import uploadImage from '../middlewares/upload-image.js';
 import validateProperty from '../middlewares/validate-property.js';
+import existProperty from '../middlewares/exists-property.js';
 
 const propertiesRouter = express.Router();
 
@@ -36,6 +38,9 @@ propertiesRouter.post('/delete-property/:id', protectRoutes, deleteProperty);
 
 //Message reading
 propertiesRouter.get('/messages/:id', getMessages);
+
+//Change state of isPublicated property
+propertiesRouter.put('/change-state/:id', protectRoutes, changeStateIsPublicated);
 
 
 export default propertiesRouter;
