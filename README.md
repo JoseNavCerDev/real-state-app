@@ -25,13 +25,111 @@ _______________________________________________________________________________
 ## API Reference
 
 API uses 3 different sections:
-- USER
-- PROPERTIES
+
 - PUBLIC
+- PROPERTIES
+- USER
 
 <br>
 
-### __User__
+
+### __PUBLIC__
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public welcome GET`
+
+This enpoint is for public use and send us a page with properties information.
+
+<br>
+
+```http
+ GET /api/public/welcome 
+```
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public not found GET`
+
+This enpoint send us a pages not founded or not authorized.
+
+```http
+ GET /api/public/not-found
+```
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public categories GET`
+
+This enpoint send us a new page only with filtered categories.
+
+```http
+ GET /api/public/categories/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. Id category sending for backend |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public search POST`
+
+This enpoint send us a new page only with filtered properties with the word sent.
+
+```http
+ GET /api/public/search
+```
+
+| Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `ending` | `string` | **Required**. Keyword for property search |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public property GET`
+
+This enpoint send us a page with all information about the property clicked.
+
+```http
+ GET /api/public/property/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. Id property sending by backend |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public property POST`
+
+This enpoint required previous login. It's for send message and contact information with the property owner.
+
+```http
+ POST /api/public/property/:id
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `id` | `string` | **Required**. Id property provided by backend |
+
+| Body | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `message` | `string` | **Required**. All the message and contact info for owner property |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Public properties GET`
+
+This enpoint required previous login. It's for send message and contact information with the property owner.
+
+```http
+ POST /api/public/property/:id
+```
+<br>
+
+
+### __USER__
 
 <br>
 
@@ -104,11 +202,71 @@ This endpoint is sending to the new email user, after the correct new creation. 
 
 <br>
 
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `User Logout POST`
+
+This endpoint is for user logout.
+
+```http
+  POST /api/user/log-out
+```
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Forget password GET`
+
+This endpoint is for .
+
+```http
+  POST /api/user/forget-password
+```
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Change password GET`
+
+This endpoint send us the page with a field to fill out for change password.
+
+```http
+  POST api/user/change-password/:token
+```
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | `email` | **Required**. Only allows email format (validated) |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Change password POST`
+
+This endpoint contains a field to fill out for change password.
+
+```http
+  POST api/user/change-password/:token
+```
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | `email` | **Required**. Only allows email format (validated) |
+
+<br>
+
+- ![#f03c15](https://via.placeholder.com/15/f03c15/000000?text=+) `Forget Password GET`
+
+This endpoint 
+
+```http
+  POST api/user/change-password/:token
+```
+| Body | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `email` | `email` | **Required**. Only allows email format (validated) |
+
+<br>
 
 
-#### add(num1, num2)
 
-Takes two numbers and returns the sum.
+
+
+
+
 
 
 

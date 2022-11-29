@@ -59,8 +59,8 @@ const userCreateNew = async (req,res) => {
     
     //Create token and register in DDBB
     user.token = tokenGenerator({
-        /* id: user.id,
-        name: user.name */
+        id: user.id,
+        name: user.name
     }); 
     await user.save();
 

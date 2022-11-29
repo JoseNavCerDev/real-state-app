@@ -7,6 +7,8 @@ import tokenGenerator from '../../helpers/token-generator.js';
 const resetPassword = async (req,res) => {
 
     const { email } = req.body;
+
+    console.log(email);
     
     //Validation fields by express-validator
     await check('email').isEmail().withMessage('It is not an email').run(req);
@@ -24,8 +26,13 @@ const resetPassword = async (req,res) => {
     }  
 
     //Check if the new email exists
-    const user = await User.findOne( { where : { email } } );
-
+    let user = null;
+    try {
+        user = await User.findOne( { where : { email } } );
+    } catch (error) {
+        console.log(error);
+    }
+    
     //Invalid email
     if(!user){
         return res.render('auth/generic-message', {
@@ -38,7 +45,7 @@ const resetPassword = async (req,res) => {
     const { id, name } = user.dataValues;
 
     //Token generator with user ID
-    const token = tokenGenerator( id );
+    const token = tokenGenerator( { id, name} );
 
     //Confirmation email
     emailPasswordChange( {

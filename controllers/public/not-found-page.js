@@ -2,7 +2,7 @@
 
 const notFoundPage = async (req,res) => {
     return res.render('auth/not-found', {
-        page: "Not Found",
+        page: "Page Not Found",
         csrfToken: req.csrfToken()
     });
 

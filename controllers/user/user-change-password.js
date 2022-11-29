@@ -1,5 +1,5 @@
 import { check, validationResult } from 'express-validator';
-import bcrypt from 'bcrypt';
+import hashPassword from '../../helpers/hash-password.js';
 
 import User from '../../models/user-model.js';
 
@@ -33,8 +33,8 @@ const changePasswords = async (req,res) => {
     user.token = null;
 
     //Hashing new pasword
-    const salt = await bcrypt.genSalt(10);
-    user.password = await bcrypt.hash(user.password, salt);
+    //const salt = await bcrypt.genSalt(10);
+    user.password = await hashPassword(password);
 
     //Saving changes
     await user.save();

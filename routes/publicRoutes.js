@@ -17,7 +17,7 @@ const publicRoutes = express.Router();
 publicRoutes.get('/welcome', welcomePage);
 
 //404 Page
-publicRoutes.get('/notFound', notFoundPage);
+publicRoutes.get('/not-found', notFoundPage);
 
 //Categories
 publicRoutes.get('/categories/:id', categoriesPage);
@@ -30,7 +30,7 @@ publicRoutes.get('/property/:id',identifyUser ,showProperty);
 publicRoutes.post('/property/:id',identifyUser ,sendMessage);
 
 //API properties
-publicRoutes.get('/properties', apiController);
+//publicRoutes.get('/properties', apiController);
 
 
 
